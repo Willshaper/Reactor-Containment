@@ -6,9 +6,7 @@ dependencies {
     // compileOnly: IC2 is always present in GTNH; we only need its classes for the mixin target and the
     // Mixin annotation processor. Not bundled.
     compileOnly("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev") { transitive = false }
-}
 
-// Dev/CI only (not published): lets runClient/runServer, and the CI server-start check, load IC2.
-dependencies {
+    // Dev/CI only (not published): lets runClient/runServer, and the CI server-start check, load IC2.
     runtimeOnlyNonPublishable("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev") { transitive = false }
 }

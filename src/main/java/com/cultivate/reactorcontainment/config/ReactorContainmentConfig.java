@@ -13,11 +13,15 @@ public class ReactorContainmentConfig {
     }
 
     @Config.Comment({ "What happens when an IC2 nuclear reactor reaches 100% heat.",
-        "VOID: the reactor core, its chambers and all components are deleted. No explosion, nothing else is touched.",
+        "VOID: the reactor core, its chambers and all components are deleted. No explosion, and no blocks around it",
+        "      are touched.",
         "CAP: hull heat is clamped to 'Cap Percent' so the reactor never melts down.",
         "      Warning: heat above the cap is simply deleted, so even uncooled reactors run forever.",
         "VANILLA: unchanged IC2 behavior (explosion, heat effects).",
-        "VOID and CAP apply even if IC2.ini has reactorExplosionPowerLimit = 0." })
+        "VOID and CAP apply even if IC2.ini has reactorExplosionPowerLimit = 0.",
+        "IC2 checks heat even while a reactor is switched off, so a reactor already at or above 100% is voided",
+        "(VOID) or pulled down to the cap (CAP) on its first tick after its chunk loads.",
+        "Dedicated servers: restart after changing this file." })
     @Config.DefaultEnum("VOID")
     @Config.Name("Mode")
     public static Mode mode = Mode.VOID;

@@ -20,7 +20,7 @@ nearby. This mod keeps the risk but contains it:
 
 | Mode | At 100% heat |
 |---|---|
-| `VOID` (default) | The reactor core, its chambers and every component are deleted. No explosion. Nothing else is touched. |
+| `VOID` (default) | The reactor core, its chambers and every component are deleted. No explosion, and no blocks around it are touched. |
 | `CAP` | Hull heat is held at *Cap Percent* (default 99%), so the reactor never melts down. |
 | `VANILLA` | Unchanged IC2 behavior. |
 
@@ -31,11 +31,23 @@ In `VOID` and `CAP` mode, IC2's heat effects on nearby blocks (fire from 40%, wa
 lava from 85%) are off by default. Radiation damage to players and mobs near a reactor above 70% heat stays on by
 default.
 
-Each voided reactor is logged as `Nuclear reactor at ... reached max heat and was voided`.
+Each voided reactor is logged as `Nuclear reactor at ... reached max heat and was voided`. IC2 logs its own
+`Nuclear Reactor at ... melted (raw explosion power ...)` line just before it. That line comes from IC2; no
+explosion happens.
+
+IC2 checks reactor heat on every reactor tick while the chunk is loaded, **even when the reactor is switched off**.
+Redstone only controls whether the fuel runs. So a reactor that is already at or above 100% is handled on its first
+tick after its chunk loads: `VOID` deletes it, fuel included, and `CAP` pulls it down to the cap.
+
+This matters on servers where IC2.ini has `reactorExplosionPowerLimit = 0`. There, reactors can sit far above 100%
+without exploding. Once you install this mod in `VOID` mode, every one of them is deleted the first time its chunk
+loads. Warn players to cool their reactors or pull the fuel first, or run `CAP`.
 
 ## Config
 
-`config/reactorcontainment.cfg`. In singleplayer you can also change it from the in-game mod config screen.
+`config/reactorcontainment.cfg`. On a dedicated server, restart the server after changing it. In singleplayer you
+can also change it from the in-game mod config screen, and changes apply right away. In multiplayer, that screen
+only edits your own local copy; the server's file is what counts.
 
 | Option | Default | |
 |---|---|---|
