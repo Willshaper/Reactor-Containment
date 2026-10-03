@@ -1,0 +1,9 @@
+// Versions match the GTNH 2.8.4 pack (GTNHLib 0.11.30, IC2 2.2.828-experimental) so the runtime classes line up.
+// UniMixins (the mixin runtime) is added automatically because usesMixins = true.
+dependencies {
+    implementation("com.github.GTNewHorizons:GTNHLib:0.11.30:dev")
+
+    // compileOnly: IC2 is always present in GTNH; we only need its classes for the mixin target and the
+    // Mixin annotation processor. Not bundled.
+    compileOnly("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev") { transitive = false }
+}

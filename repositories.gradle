@@ -1,0 +1,12 @@
+// The GTNH Maven and the common 1.7.10 repositories are added by the gtnhconvention plugin
+// (includeWellKnownRepositories = true). IC2's deobfuscated dev jar lives on the official IC2 maven.
+
+repositories {
+    maven {
+        name = "IC2"
+        url = "https://maven.ic2.player.to/"
+        mavenContent {
+            includeGroup("net.industrial-craft")
+        }
+    }
+}
