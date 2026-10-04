@@ -21,10 +21,11 @@ public class ReactorContainmentConfig {
         "VOID and CAP apply even if IC2.ini has reactorExplosionPowerLimit = 0.",
         "IC2 checks heat even while a reactor is switched off, so a reactor already at or above 100% is voided",
         "(VOID) or pulled down to the cap (CAP) on its first tick after its chunk loads.",
+        "A fresh install starts in CAP so no existing reactor is deleted on first boot.",
         "Dedicated servers: restart after changing this file." })
-    @Config.DefaultEnum("VOID")
+    @Config.DefaultEnum("CAP")
     @Config.Name("Mode")
-    public static Mode mode = Mode.VOID;
+    public static Mode mode = Mode.CAP;
 
     @Config.Comment("CAP mode only: hull heat never goes above this percentage of the reactor's max heat.")
     @Config.DefaultInt(99)

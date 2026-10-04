@@ -20,12 +20,13 @@ nearby. This mod keeps the risk but contains it:
 
 | Mode | At 100% heat |
 |---|---|
-| `VOID` (default) | The reactor core, its chambers and every component are deleted. No explosion, and no blocks around it are touched. |
-| `CAP` | Hull heat is held at *Cap Percent* (default 99%), so the reactor never melts down. |
+| `VOID` | The reactor core, its chambers and every component are deleted. No explosion, and no blocks around it are touched. |
+| `CAP` (default) | Hull heat is held at *Cap Percent* (default 99%), so the reactor never melts down. |
 | `VANILLA` | Unchanged IC2 behavior. |
 
-`CAP` deletes any heat above the cap, so even a reactor with no cooling at all runs forever. Use `VOID` if you want
-reactor design to still matter.
+A fresh install starts in `CAP`, so installing the mod never deletes anyone's reactor. `CAP` deletes any heat above
+the cap, so even a reactor with no cooling at all runs forever. Switch to `VOID` if you want reactor design to still
+matter.
 
 In `VOID` and `CAP` mode, IC2's heat effects on nearby blocks (fire from 40%, water evaporation from 50%, fire and
 lava from 85%) are off by default. Radiation damage to players and mobs near a reactor above 70% heat stays on by
@@ -40,8 +41,8 @@ Redstone only controls whether the fuel runs. So a reactor that is already at or
 tick after its chunk loads: `VOID` deletes it, fuel included, and `CAP` pulls it down to the cap.
 
 This matters on servers where IC2.ini has `reactorExplosionPowerLimit = 0`. There, reactors can sit far above 100%
-without exploding. Once you install this mod in `VOID` mode, every one of them is deleted the first time its chunk
-loads. Warn players to cool their reactors or pull the fuel first, or run `CAP`.
+without exploding. Once you switch this mod to `VOID`, every one of them is deleted the first time its chunk
+loads. Warn players to cool their reactors or pull the fuel before you switch to `VOID`, or stay on `CAP`.
 
 ## Config
 
@@ -51,7 +52,7 @@ only edits your own local copy; the server's file is what counts.
 
 | Option | Default | |
 |---|---|---|
-| Mode | `VOID` | `VOID`, `CAP` or `VANILLA` |
+| Mode | `CAP` | `CAP`, `VOID` or `VANILLA` |
 | Cap Percent | `99` | `CAP` only, 1 to 99 |
 | Heat Block Effects | `false` | Keep IC2's fire, evaporation and lava near hot reactors |
 | Heat Entity Damage | `true` | Keep radiation damage near reactors above 70% heat |
